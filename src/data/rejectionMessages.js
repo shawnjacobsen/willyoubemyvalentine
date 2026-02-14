@@ -1,4 +1,4 @@
-export const EASTER_EGG_MESSAGES = [
+export const REJECTION_MESSAGES = [
   "My heart is breaking in real time...",
   "I spent 1 whole hour making this for you 🥺",
   "Fun fact: 9 out of 10 dentists recommend saying yes",

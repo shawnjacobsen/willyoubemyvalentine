@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import { EASTER_EGG_MESSAGES } from './data/easterEggMessages'
+import { REJECTION_MESSAGES } from './data/rejectionMessages'
 import { CELEBRATION_GIFS } from './data/celebrationGifs'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   const [isNoButtonMoving, setIsNoButtonMoving] = useState(false)
   const [name, setName] = useState('')
   const [noClickCount, setNoClickCount] = useState(0)
-  const [easterEggMessage, setEasterEggMessage] = useState('')
+  const [rejectionMessage, setRejectionMessage] = useState('')
   const [celebrationGif, setCelebrationGif] = useState('')
 
   useEffect(() => {
@@ -22,8 +22,8 @@ function App() {
 
   useEffect(() => {
     if (noClickCount >= 3) {
-      const randomMessage = EASTER_EGG_MESSAGES[Math.floor(Math.random() * EASTER_EGG_MESSAGES.length)]
-      setEasterEggMessage(randomMessage)
+      const randomMessage = REJECTION_MESSAGES[Math.floor(Math.random() * REJECTION_MESSAGES.length)]
+      setRejectionMessage(randomMessage)
     }
   }, [noClickCount])
 
@@ -42,30 +42,43 @@ function App() {
     setIsNoButtonMoving(true)
     setNoClickCount(prev => prev + 1)
 
-    // Generate a position that avoids the center area
     let randomTop, randomLeft
     let isInSafeZone = false
 
-    // Adjust danger zone based on screen size
     const isMobile = window.innerWidth <= 768
-    const centerLeft = 50
-    const centerTop = 50
-    const dangerZoneWidth = isMobile ? 45 : 35 // Wider danger zone on mobile
-    const dangerZoneHeight = isMobile ? 50 : 40 // Taller danger zone on mobile
 
-    // Keep generating positions until we find one outside the danger zone
-    while (!isInSafeZone) {
-      randomTop = Math.floor(Math.random() * 80) + 10
-      randomLeft = Math.floor(Math.random() * 80) + 10
+    if (isMobile) {
+      // Mobile: Keep button in lower portion (below all elements)
+      // All content (header, rejection message, Yes button) is in upper 60%
+      while (!isInSafeZone) {
+        randomTop = Math.floor(Math.random() * 25) + 60 // 60-85% from top
+        randomLeft = Math.floor(Math.random() * 80) + 10 // 10-90% from left
 
-      // Check if position is outside the center danger zone
-      const isOutsideHorizontal = randomLeft < (centerLeft - dangerZoneWidth / 2) ||
-                                   randomLeft > (centerLeft + dangerZoneWidth / 2)
-      const isOutsideVertical = randomTop < (centerTop - dangerZoneHeight / 2) ||
-                                 randomTop > (centerTop + dangerZoneHeight / 2)
+        // Avoid bottom credit area
+        const isAboveCredit = randomTop < 85
 
-      // Safe if outside either horizontally or vertically (doesn't have to be both)
-      isInSafeZone = isOutsideHorizontal || isOutsideVertical
+        isInSafeZone = isAboveCredit
+      }
+    } else {
+      // Desktop: Avoid center exclusion zone (where Yes button and rejection message are)
+      const centerLeft = 50
+      const centerTop = 50
+      const exclusionWidth = 55
+      const exclusionHeight = 55
+
+      while (!isInSafeZone) {
+        randomTop = Math.floor(Math.random() * 80) + 10 // 10-90% from top
+        randomLeft = Math.floor(Math.random() * 80) + 10 // 10-90% from left
+
+        // Check if outside center exclusion zone
+        const isOutsideHorizontal = randomLeft < (centerLeft - exclusionWidth / 2) ||
+                                     randomLeft > (centerLeft + exclusionWidth / 2)
+        const isOutsideVertical = randomTop < (centerTop - exclusionHeight / 2) ||
+                                   randomTop > (centerTop + exclusionHeight / 2)
+
+        // Safe if outside either horizontally OR vertically
+        isInSafeZone = isOutsideHorizontal || isOutsideVertical
+      }
     }
 
     setNoButtonPosition({
@@ -125,8 +138,8 @@ function App() {
         created by <a href="https://github.com/shawnjacobsen" target="_blank" rel="noopener noreferrer">shawn jacobsen</a>
       </div>
       {noClickCount >= 3 && (
-        <div className="easter-egg">
-          {easterEggMessage}
+        <div className="rejection-message">
+          {rejectionMessage}
         </div>
       )}
     </div>

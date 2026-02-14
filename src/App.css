@@ -70,7 +70,7 @@
 }
 
 .no-button.moving {
-  position: absolute;
+  position: fixed;
   z-index: 1001;
 }
 
@@ -101,7 +101,7 @@
   text-decoration: underline;
 }
 
-.easter-egg {
+.rejection-message {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -278,6 +278,14 @@
   .credit {
     font-size: 0.8rem;
   }
+
+  .rejection-message {
+    padding: 1.8rem 2.5rem;
+    font-size: 1.1rem;
+    max-width: 85%;
+    top: 20%;
+    transform: translate(-50%, -100%);
+  }
 }
 
 @media (max-width: 480px) {
@@ -320,9 +328,11 @@
     font-size: 0.75rem;
   }
 
-  .easter-egg {
+  .rejection-message {
     padding: 1.5rem 2rem;
     font-size: 1rem;
-    max-width: 80%;
+    max-width: 85%;
+    top: 18%;
+    transform: translate(-50%, -100%);
   }
 }
