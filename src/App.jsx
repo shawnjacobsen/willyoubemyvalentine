@@ -1,28 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-
-const EASTER_EGG_MESSAGES = [
-  "My heart is breaking in real time...",
-  "I spent 1 whole hour making this for you 🥺",
-  "Fun fact: 9 out of 10 dentists recommend saying yes",
-  "The 'No' button is getting a workout. Unlike our future date plans. 😔",
-  "At this point you're just playing with the button aren't you",
-  "We both know how this ends... just say yes 😌",
-  "Wow, you're pretty serious about this, huh?",
-  "I admire your commitment to avoiding happiness",
-  "Impressive dedication to breaking my heart, truly",
-  "You've put more effort into saying no than most people put into their careers"
-]
-
-const CELEBRATION_GIFS = [
-  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDlueXJ3MzN6NmFucWRuZXB2NXBseG5qN3NldmtrbDdwMWM2cTJzbiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QAB3dfWbviuR0iIC1T/giphy.gif",
-  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGc2aDR0MXhtc2JwdjNzNmgxMmszNjAxNDd3eHhoMGZpNml2cDF1dCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/NxC8VtyxqhMtpLoEEN/giphy.gif",
-  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGc2aDR0MXhtc2JwdjNzNmgxMmszNjAxNDd3eHhoMGZpNml2cDF1dCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/D9j761FH8SYJLyW9WO/giphy.gif",
-  "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3MDFhY2N2d3ZjNnhkYjl1bndvbXdnb283eDdrYzdzM3JtN3N0ZnAzeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/qKQQUKSSbWBkO2V3KX/giphy.gif",
-  "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NHUzNnR5bXB1djM4aXR4Z3l3YnFlZWRweXJtZDNyNHZjank4YnJvaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/JSIe9fm21lIursagnk/giphy.gif",
-  "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dDQyNnNvZTdyczA1NHdzeTJuODVuZ282djlrcWZnN3NxNW1qNDdpdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/H8KHWylNnghz5NbzPk/giphy.gif",
-  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemR1c3liZWZudmQyNGJxZ25kbTViN3Rlc2s3eGhjcjk5dHVoeHp5MiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MDJ9IbxxvDUQM/giphy.gif"
-]
+import { EASTER_EGG_MESSAGES } from './data/easterEggMessages'
+import { CELEBRATION_GIFS } from './data/celebrationGifs'
 
 function App() {
   const [accepted, setAccepted] = useState(false)

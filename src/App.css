@@ -83,14 +83,14 @@
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.9rem;
-  color: #ff69b4;
+  font-size: 0.7rem;
+  color: #ff69b484;
   z-index: 100;
   text-align: center;
 }
 
 .credit a {
-  color: #ff1493;
+  color: #ff1491b3;
   text-decoration: none;
   font-weight: 500;
   transition: opacity 0.2s ease;
